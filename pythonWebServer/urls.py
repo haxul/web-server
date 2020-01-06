@@ -18,10 +18,13 @@ from django.urls import path, include, re_path
 from urlapp import views
 from teststaticapp import views as v
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("user/<int:month>/<int:year>/", views.home, name="home"),
-    path("test/", include("urlapp.test")),
-    path("about/", views.about, name="about"),
-    path("stat/", v.home, name="static")
-]
+                  path('admin/', admin.site.urls),
+                  path("user/<int:month>/<int:year>/", views.home, name="home"),
+                  path("test/", include("urlapp.test")),
+                  path("about/", views.about, name="about"),
+                  path("stat/", v.home, name="static")
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
