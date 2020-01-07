@@ -21,13 +21,21 @@ from teststaticapp import views as v
 from django.conf.urls.static import static
 from django.conf import settings
 from validformapp import views as fv
-
+from authapp import views as av
+from django.contrib.auth import views as auth_views
+from authapp import views as main_views
 urlpatterns = [
                   path('admin/', admin.site.urls),
+                  path("python/", main_views.main_page, name="main_page"),
                   path("user/<int:month>/<int:year>/", views.home, name="home"),
                   path("test/", include("urlapp.test")),
                   path("about/", views.about, name="about"),
                   path("stat/", v.home, name="static"),
                   path("pizza/<int:pizza_id>", v.pizza_detail, name="pizza_detail"),
-                  path("formpage/", fv.form_page, name="form-page")
+                  path("formpage/", fv.form_page, name="form-page"),
+                  path("", av.home, name="main"),
+                  path("authapp/login/", auth_views.LoginView.as_view(template_name="authapp/login.html", ),
+                       name="login"),
+                  path("/", auth_views.LogoutView.as_view(),
+                       name="logout"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
