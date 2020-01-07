@@ -20,6 +20,7 @@ from teststaticapp import views as v
 
 from django.conf.urls.static import static
 from django.conf import settings
+from validformapp import views as fv
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
@@ -27,5 +28,6 @@ urlpatterns = [
                   path("test/", include("urlapp.test")),
                   path("about/", views.about, name="about"),
                   path("stat/", v.home, name="static"),
-                  path("pizza/<int:pizza_id>", v.pizza_detail, name="pizza_detail")
+                  path("pizza/<int:pizza_id>", v.pizza_detail, name="pizza_detail"),
+                  path("formpage/", fv.form_page, name="form-page")
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

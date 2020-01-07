@@ -1,11 +1,10 @@
 {% extends "base.html" %}
-
 {% block title %}
     {{ pizza.name }}
 {% endblock title %}
 
 {% block page %}
-    <a href="{% url "static"%}">Home</a>
+    <a href="{% url "static" %}">Home</a>
     <div>
         <h2>{{ pizza.name }}</h2>
         <div>{{ pizza.short_description }}</div>
@@ -13,4 +12,13 @@
         <img src="{{ pizza.photo.url }}">
         <div></div>
     </div>
+    <h2>Order</h2>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type="submit" value="Send order">
+    </form>
+    {% if sent %}
+        <h6>You bought pizza {{ pizza.name }}</h6>
+    {% endif %}
 {% endblock %}
