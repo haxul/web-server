@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ pizza.name }}
+{% endblock title %}
+
+{% block page %}
+    <a href="{% url "static"%}">Home</a>
+    <div>
+        <h2>{{ pizza.name }}</h2>
+        <div>{{ pizza.short_description }}</div>
+        <div>{{ pizza.price }}</div>
+        <img src="{{ pizza.photo.url }}">
+        <div></div>
+    </div>
+{% endblock %}

@@ -1,13 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Static file</title>
-    <link rel="stylesheet" href="{% static "/css/style.css" %}">
-</head>
-<body>
-<h1>hello from static files!!</h1>
-<img src="{% static "/images/logo.png" %}">
-</body>
-</html>
+{% extends "base.html" %}
+{% block page %}
+<h1>it is new pizza</h1>
+<ul>
+    {% for pizza in pizzas %}
+        <div>
+            <a href="{% url "pizza_detail" pizza_id=pizza.id %}"><h2>{{ pizza.name }}</h2></a>
+            <div>{{ pizza.short_description }}</div>
+            <div>{{ pizza.price }}</div>
+            <img src="{{ pizza.photo.url }}">
+            <div></div>
+        </div>
+    {% endfor %}
+</ul>
+{% endblock %}

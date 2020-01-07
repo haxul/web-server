@@ -26,5 +26,6 @@ urlpatterns = [
                   path("user/<int:month>/<int:year>/", views.home, name="home"),
                   path("test/", include("urlapp.test")),
                   path("about/", views.about, name="about"),
-                  path("stat/", v.home, name="static")
+                  path("stat/", v.home, name="static"),
+                  path("pizza/<int:pizza_id>", v.pizza_detail, name="pizza_detail")
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
