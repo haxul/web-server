@@ -24,6 +24,7 @@ from validformapp import views as fv
 from authapp import views as av
 from django.contrib.auth import views as auth_views
 from authapp import views as main_views
+from firstapp import apis
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path("python/", main_views.main_page, name="main_page"),
@@ -38,5 +39,7 @@ urlpatterns = [
                        name="login"),
                   path("/", auth_views.LogoutView.as_view(),
                        name="logout"),
-                  path("authapp/signup/", main_views.sign_up, name="sign_up")
+                  path("authapp/signup/", main_views.sign_up, name="sign_up"),
+                  path("api/client/pizzashops", apis.client_get_pizzashops),
+                  path("api/<int:pizzashop_id>/pizzas", apis.get_pizzas)
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
