@@ -38,4 +38,5 @@ urlpatterns = [
                        name="login"),
                   path("/", auth_views.LogoutView.as_view(),
                        name="logout"),
+                  path("authapp/signup/", main_views.sign_up, name="sign_up")
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
