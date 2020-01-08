@@ -27,6 +27,7 @@ from authapp import views as main_views
 from firstapp import apis
 urlpatterns = [
                   path('admin/', admin.site.urls),
+                  path('api/auth/', include('rest_framework_social_oauth2.urls')),
                   path("python/", main_views.main_page, name="main_page"),
                   path("user/<int:month>/<int:year>/", views.home, name="home"),
                   path("test/", include("urlapp.test")),
@@ -43,3 +44,5 @@ urlpatterns = [
                   path("api/client/pizzashops", apis.client_get_pizzashops),
                   path("api/<int:pizzashop_id>/pizzas", apis.get_pizzas)
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
